@@ -1,0 +1,31 @@
+# config.yaml
+# This is an example provided by Rishi.
+# 1. Create different configuration files and schemas for different operation
+# e.g. data loading, preprocessing, training, evaluating
+# 2. Keep configurations in /conf/ subdirectories associated with their operation
+# 3. For any config.yaml files, you will need an associated schema.py file for parsing them
+
+# observing pg. 16 of https://arxiv.org/pdf/2004.10964.pdf
+
+model_name: roberta-base
+train_dataset: sst2
+run_id: 'finetuning-seed-1'
+seed: 1
+num_train_epochs: 3
+patience: 3
+learning_rate: 0.00002
+per_device_train_batch_size: 8
+num_labels: 2
+save_strategy: steps
+evaluation_strategy: steps
+num_save_checkpoints: 10
+evals_per_epoch: 4
+evaluation_datasets:
+    - sst2
+    - imdb
+    - yelp_polarity
+    - amazon_polarity
+max_checkpoint_step: 25200
+seeds_to_evaluate:
+    - 2
+# ^ should be done programmatically
